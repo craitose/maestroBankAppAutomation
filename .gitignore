@@ -1,0 +1,21 @@
+# Python / Node / Java / general automation ignores
+__pycache__/
+*.pyc
+node_modules/
+dist/
+build/
+
+# Test artifacts
+artifacts/
+Reports/
+screenshots/
+*.html
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE junk
+.vscode/
+.idea/
