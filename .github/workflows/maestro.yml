@@ -32,10 +32,11 @@ jobs:
     - name: Set up Android Emulator & Run Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
-        api-level: 30
-        target: default
-        arch: x86_64
-        profile: pixel_5
+        api-level: 29
+        target: google_apis
+        arch: x86
+        disable-animations: true
+        emulator-options: "-no-snapshot -noaudio -no-boot-anim"
         script: |
           mkdir -p artifacts/Reports
           mkdir -p artifacts/screenshots
