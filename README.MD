@@ -115,4 +115,3 @@ Eribank-Automation/
 ```
 ## Screenshots
 
-![alt text](artifacts/screenshots/image.png)
