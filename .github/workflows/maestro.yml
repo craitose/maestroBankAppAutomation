@@ -1,7 +1,11 @@
 name: Maestro CI
 
 on:
-  workflow_dispatch:  # 🚀 Manual trigger only  
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
 
 jobs:
   maestro-tests:
@@ -40,6 +44,11 @@ jobs:
           maestro test tests/ --test-output-dir artifacts/screenshots --format junit --output artifacts/Reports/test-results.xml
           # Generate HTML report
           junit-viewer --results=artifacts/Reports/test-results.xml --save=artifacts/Reports/consolidated-report.html
+
+    - name: Run PowerShell Enhanced Report Script
+      shell: pwsh
+      run: |
+        ./generate-enhanced-report.ps1    
 
     - name: Upload Test Reports and Screenshots
       uses: actions/upload-artifact@v4
