@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="pixel_5" tests="5" failures="0" time="177.0">
+    <testcase id="cancelPayment" name="cancelPayment" classname="cancelPayment" time="52.0" status="SUCCESS"/>
+    <testcase id="invalidLogin" name="invalidLogin" classname="invalidLogin" time="21.0" status="SUCCESS"/>
+    <testcase id="logout" name="logout" classname="logout" time="25.0" status="SUCCESS"/>
+    <testcase id="makePayment" name="makePayment" classname="makePayment" time="54.0" status="SUCCESS"/>
+    <testcase id="validLogin" name="validLogin" classname="validLogin" time="25.0" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

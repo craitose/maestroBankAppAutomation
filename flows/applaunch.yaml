@@ -1,0 +1,7 @@
+
+appId: com.experitest.ExperiBank
+---
+- launchApp:
+    clearState: true
+- tapOn: "EriBank"    #Tapping on EriBank Tab
+- tapOn: "OK" #Tapping on OK button of the alert that appears when launching the app

@@ -1,0 +1,44 @@
+appId: com.experitest.ExperiBank
+---
+- runFlow: "../flows/applaunch.yaml" # Running the flow to launch the app and navigate to Eribank
+- tapOn: "Username"        # Tap on username input field 
+
+- inputText: "company"  # Input text for username (replace with actual username)
+
+- tapOn: "Password"        # Tap on password input field
+
+- inputText: "company"  # Input text for password (replace with actual password)
+- takeScreenshot: "cancelPayment-Login-Credentials" # Taking screenshot of Login credentials
+
+- tapOn: "Login"        # Tap on login button
+
+- assertVisible: "Your balance is: .*" # Asserting that the text "Your Balance" is visible
+- takeScreenshot: "cancelPayment-Successful-Login" # Taking screenshot of successful login
+
+- tapOn: "Make Payment"       # Tap on Make Payment button
+- takeScreenshot: "cancelPayment-MakePayment-Screen" # Taking screenshot of Make Payment screen
+- assertVisible: "Select" # Asserting that the text "Select" is visible on Make Payment screen
+
+- tapOn: "Phone"        # Tap on Phone input field
+- inputText: "1234567890"  # Input text for phone number (replace with actual phone number)
+
+- tapOn: "Name"        # Tap on Name input field
+
+- inputText: "John Doe"  # Input text for name (replace with actual name)
+
+- tapOn:
+    point: "45%,34%"        # tap on 3$ amount marker of the slider
+
+- tapOn: "Select"      # Tap on Select button to choose country
+
+- tapOn: "USA" # Tap on United States from the list of countries
+
+- tapOn: "Cancel" # Tap on Cancel button
+
+- assertVisible: "Your balance is: .*" # Asserting that the text "Your Balance" is visible after cancelling payment
+- takeScreenshot: "cancelPayment-Cancel-Payment" # Taking screenshot after cancelling payment
+
+- tapOn: "Logout"       # Tap on logout button
+
+- stopApp
+

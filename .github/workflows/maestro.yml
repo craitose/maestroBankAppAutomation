@@ -1,0 +1,50 @@
+name: Maestro CI
+
+on:
+  workflow_dispatch:  # 🚀 Manual trigger only  
+
+jobs:
+  maestro-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout current repo (includes APK and flows)
+      uses: actions/checkout@v3
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Install Maestro
+      run: |
+        curl -Ls "https://get.maestro.mobile.dev" | bash
+        echo "$HOME/.maestro/bin" >> $GITHUB_PATH
+
+    - name: Install junit-viewer (for HTML report generation)
+      run: npm install -g junit-viewer
+
+    - name: Set up Android Emulator & Run Tests
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 30
+        target: default
+        arch: x86_64
+        profile: pixel_5
+        script: |
+          mkdir -p artifacts/Reports
+          mkdir -p artifacts/screenshots
+          adb install apk/EriBank.apk
+          # Run all tests with proper screenshot handling
+          maestro test tests/ --test-output-dir artifacts/screenshots --format junit --output artifacts/Reports/test-results.xml
+          # Generate HTML report
+          junit-viewer --results=artifacts/Reports/test-results.xml --save=artifacts/Reports/consolidated-report.html
+
+    - name: Upload Test Reports and Screenshots
+      uses: actions/upload-artifact@v4
+      with:
+        name: maestro-test-results
+        path: |
+          artifacts/Reports/
+          artifacts/screenshots/

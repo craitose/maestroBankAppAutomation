@@ -1,0 +1,47 @@
+appId: com.experitest.ExperiBank
+
+---
+- runFlow: "../flows/applaunch.yaml" # Running the flow to launch the app and navigate to Eribank
+- tapOn: "Username"        # Tap on username input field 
+
+- inputText: "company"  # Input text for username (replace with actual username)
+
+- tapOn: "Password"        # Tap on password input field
+
+- inputText: "company"  # Input text for password (replace with actual password)
+- takeScreenshot: "makePayment-Login-Credentials" # Taking screenshot of Login credentials
+
+- tapOn: "Login"        # Tap on login button
+
+- assertVisible: "Your balance is: .*" # Asserting that the text "Your Balance" is visible
+- takeScreenshot: "makePayment-Successful-Login" # Taking screenshot of successful login
+
+- tapOn: "Make Payment"       # Tap on Make Payment button
+- takeScreenshot: "makePayment-MakePayment-Screen" # Taking screenshot of Make Payment screen
+- assertVisible: "Select" # Asserting that the text "Select" is visible on Make Payment screen
+
+- tapOn: "Phone"        # Tap on Phone input field
+- inputText: "1234567890"  # Input text for phone number (replace with actual phone number)
+
+- tapOn: "Name"        # Tap on Name input field
+- inputText: "John Doe"  # Input text for name (replace with actual name)
+
+- tapOn:
+    point: "37%,34%"        # tap on 3$ amount marker of the slider
+
+- tapOn: "Select"      # Tap on Select button to choose country
+
+- tapOn: "USA" # Tap on United States from the list of countries
+
+- tapOn: "Send Payment" # Tap on Send Payment button
+
+- tapOn: "Yes" # Tap on Yes button to confirm payment
+- copyTextFrom: "Your balance is: .*"
+- evalScript: "${output.balance = maestro.copiedText.match(/Your balance is: (.*)/)[1]}"
+- assertTrue: ${output.balance < "100.00$"}
+- assertNotVisible: "Your balance is: 100.00$" # Asserting that the initial balance text is not visible after making payment
+- takeScreenshot: "makePayment-Payment-Successful" # Taking screenshot after successful payment
+
+- tapOn: "Logout"       # Tap on logout button
+
+- stopApp

@@ -1,0 +1,18 @@
+appId: com.experitest.ExperiBank
+---
+- runFlow: "../flows/applaunch.yaml" # Running the flow to launch the app and navigate to Eribank
+
+- tapOn: "Username"        # Tap on username input field 
+
+- inputText: "soletrader"  # Input text for username (replace with actual username)
+
+- tapOn: "Password"        # Tap on password input field
+
+- inputText: "soletrader"  # Input text for password (replace with actual password)
+
+- tapOn: "Login"        # Tap on login button
+
+- assertNotVisible: "Your balance is: .*" # Asserting that the text "Your Balance" is visible
+- takeScreenshot: "invalidLogin-UnSuccessful-Login" # Taking screenshot of successful login
+
+- stopApp
