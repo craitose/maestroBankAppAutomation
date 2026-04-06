@@ -19,7 +19,7 @@ jobs:
         docker run --rm \
           -v ${{ github.workspace }}:/work \
           -w /work \
-          mobiledevinc/maestro \
+          mobiledevinc/maestro-cli \
           maestro test tests/ \
             --app apk/EriBank.apk \
             --format junit \
