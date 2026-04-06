@@ -6,55 +6,39 @@ on:
       - main
   workflow_dispatch:
 
-
 jobs:
   maestro-tests:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout current repo (includes APK and flows)
+    - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Set up Java
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '17'
-
-    - name: Install Maestro
+    - name: Run Maestro tests in Docker (headless device)
       run: |
-        curl -Ls "https://get.maestro.mobile.dev" | bash
-        echo "$HOME/.maestro/bin" >> $GITHUB_PATH
+        docker run --rm \
+          -v ${{ github.workspace }}:/work \
+          -w /work \
+          mobiledevinc/maestro \
+          maestro test tests/ \
+            --app apk/EriBank.apk \
+            --format junit \
+            --output artifacts/Reports/test-results.xml \
+            --test-output-dir artifacts/screenshots
 
-    - name: Install junit-viewer (for HTML report generation)
+    - name: Install junit-viewer
       run: npm install -g junit-viewer
 
-    - name: Set up Android Emulator & Run Tests
-      uses: reactivecircus/android-emulator-runner@v2
-      with:
-        api-level: 29
-        target: google_apis
-        arch: x86
-        disable-animations: true
-        emulator-options: "-no-snapshot -noaudio -no-boot-anim"
-        script: |
-          mkdir -p artifacts/Reports
-          mkdir -p artifacts/screenshots
-          adb install apk/EriBank.apk
-          # Run all tests with proper screenshot handling
-          maestro test tests/ --test-output-dir artifacts/screenshots --format junit --output artifacts/Reports/test-results.xml
-          # Generate HTML report
-          junit-viewer --results=artifacts/Reports/test-results.xml --save=artifacts/Reports/consolidated-report.html
+    - name: Generate HTML report
+      run: |
+        junit-viewer --results=artifacts/Reports/test-results.xml --save=artifacts/Reports/consolidated-report.html
 
     - name: Run PowerShell Enhanced Report Script
       shell: pwsh
-      run: |
-        ./generate-enhanced-report.ps1    
+      run: ./generate-enhanced-report.ps1
 
-    - name: Upload Test Reports and Screenshots
+    - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: maestro-test-results
-        path: |
-          artifacts/Reports/
-          artifacts/screenshots/
+        path: artifacts/
