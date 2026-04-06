@@ -9,7 +9,7 @@ on:
 
 jobs:
   maestro-tests:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - name: Checkout current repo (includes APK and flows)
