@@ -114,4 +114,4 @@ Eribank-Automation/
 └── README.md
 ```
 ## Screenshots
-https://github.com/user-attachments/assets/f1212ae0-34a1-4ce7-bf25-d2239655c03f
+https://github.com/user-attachments/assets/2f6aedf7-a9ae-4d89-8525-6f5069110a6e
