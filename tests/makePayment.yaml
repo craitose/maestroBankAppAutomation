@@ -34,7 +34,9 @@ appId: com.experitest.ExperiBank
 - tapOn: "USA" # Tap on United States from the list of countries
 
 - tapOn: "Send Payment" # Tap on Send Payment button
-- waitForAnimationEnd
+- extendedWaitUntil:
+    visible: "Yes"
+    timeout: 10000
 - tapOn: "(?i)yes" # Tap on Yes button to confirm payment
 - copyTextFrom: "Your balance is: .*"
 - evalScript: "${output.balance = maestro.copiedText.match(/Your balance is: (.*)/)[1]}"
