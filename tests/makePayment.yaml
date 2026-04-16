@@ -26,17 +26,12 @@ appId: com.experitest.ExperiBank
 - tapOn: "Name"        # Tap on Name input field
 - inputText: "John Doe"  # Input text for name (replace with actual name)
 
-#- tapOn:
-#    point: "37%,34%"        # tap on 6$ amount marker of the slider
-
 - swipe:
     from:
       id: "com.experitest.ExperiBank:id/amount" 
     direction: RIGHT
     duration: 100 # duration in ms for the swipe action
-    #start: 35%, 34%
-    #end: 37%, 34%
-    
+   
 - waitForAnimationToEnd # Give the UI a second to enable the button
 - assertNotVisible: "Amount (0$)"
 

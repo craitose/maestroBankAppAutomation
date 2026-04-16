@@ -27,10 +27,10 @@ appId: com.experitest.ExperiBank
 - inputText: "John Doe"  # Input text for name (replace with actual name)
 
 - swipe:
-    # Use the resource ID of the slider for precision
-    id: "com.experitest.ExperiBank:id/amount" 
-    start: 35%, 34%
-    end: 37%, 34%
+    from:
+      id: "com.experitest.ExperiBank:id/amount" 
+    direction: RIGHT
+    duration: 100 # duration in ms for the swipe action
 
 - tapOn: "Select"      # Tap on Select button to choose country
 
