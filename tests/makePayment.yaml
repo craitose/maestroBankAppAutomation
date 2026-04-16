@@ -33,8 +33,9 @@ appId: com.experitest.ExperiBank
 
 - tapOn: "USA" # Tap on United States from the list of countries
 
+- assertVisible: "Send Payment" # Asserting that the Send Payment button is visible after filling all details
 - tapOn: "Send Payment" # Tap on Send Payment button
-
+- takeScreenshot: "makePayment-Send-Payment-Button-clicked"
 - assertVisible: "Are you sure you want to send payment?" # Asserting that the confirmation popup is visible
 - tapOn: "Yes" # Tap on Yes button to confirm payment
 - copyTextFrom: "Your balance is: .*"
