@@ -48,7 +48,7 @@ jobs:
           # Wait a few extra seconds to ensure adb is ready
           adb wait-for-device
           mkdir -p artifacts/Reports
-          mkdir -p artifacts/screenshots
+          mkdir -p artifacts/screenshots/screenshots
           adb install apk/EriBank.apk
           # Run all tests with proper screenshot handling
           maestro test tests/ --test-output-dir artifacts/screenshots/screenshots --format junit --output artifacts/Reports/test-results.xml || true
