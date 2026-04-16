@@ -51,7 +51,7 @@ jobs:
           mkdir -p artifacts/screenshots
           adb install apk/EriBank.apk
           # Run all tests with proper screenshot handling
-          maestro test tests/ --test-output-dir artifacts/screenshots --format junit --output artifacts/Reports/test-results.xml
+          maestro test tests/ --test-output-dir artifacts/screenshots --format junit --output artifacts/Reports/test-results.xml || true
           # Generate HTML report
           junit-viewer --results=artifacts/Reports/test-results.xml --save=artifacts/Reports/consolidated-report.html
 

@@ -11,6 +11,7 @@ Reports/
 screenshots/
 *.html
 *.log
+*.png
 
 # OS junk
 .DS_Store
