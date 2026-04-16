@@ -35,9 +35,6 @@ appId: com.experitest.ExperiBank
 
 - tapOn: "Send Payment" # Tap on Send Payment button
 
-- extendedWaitUntil:
-    visible: "Yes"
-    timeout: 15000
 - assertVisible: "Are you sure you want to send payment?" # Asserting that the confirmation popup is visible
 - tapOn: "Yes" # Tap on Yes button to confirm payment
 - copyTextFrom: "Your balance is: .*"
