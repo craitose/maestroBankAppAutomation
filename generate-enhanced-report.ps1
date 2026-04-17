@@ -93,10 +93,11 @@ if ($screenshotsExist) {
             
             foreach ($screenshotInfo in $testCases[$testCase]) {
                 # Use correct relative path - now pointing to the copied screenshots in reports/screenshots
+                # Fixed path to work correctly on both Windows and Linux/GitHub Actions
                 $enhancedReportContent += @"
                         <div class="col">
                             <div class="card h-100">
-                                <img src="screenshots/$($screenshotInfo.Name)" class="card-img-top" alt="$($screenshotInfo.Caption)" style="max-height: 300px; object-fit: contain;">
+                                <img src="./screenshots/$($screenshotInfo.Name)" class="card-img-top" alt="$($screenshotInfo.Caption)" style="max-height: 300px; object-fit: contain;">
                                 <div class="card-body">
                                     <h5 class="card-title">$($screenshotInfo.Caption)</h5>
                                 </div>
