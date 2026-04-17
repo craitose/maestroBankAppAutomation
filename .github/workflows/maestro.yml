@@ -51,6 +51,9 @@ jobs:
         script: |
           # Wait a few extra seconds to ensure adb is ready
           adb wait-for-device
+          # Create directories for Maestro output
+          mkdir -p artifacts/Reports/
+          mkdir -p artifacts/screenshots/
           adb install apk/EriBank.apk
           # Run all tests with proper screenshot handling
           maestro test tests/ --test-output-dir artifacts/screenshots --format junit --output artifacts/Reports/test-results.xml || true
